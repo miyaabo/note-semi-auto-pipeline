@@ -1,0 +1,62 @@
+name: note-pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Pipeline mode"
+        required: true
+        default: "dry_run"
+        type: choice
+        options:
+          - dry_run
+          - semi_auto
+          - one_week_auto_test
+  schedule:
+    - cron: "0 21 * * *"
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+    env:
+      PIPELINE_MODE: ${{ github.event_name == 'schedule' && 'one_week_auto_test' || inputs.mode }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Verify mode
+        run: echo "Running pipeline in ${PIPELINE_MODE}"
+
+      - name: Collect topics
+        run: python scripts/collect_topics.py --mode "${PIPELINE_MODE}"
+
+      - name: Merge topics
+        run: python scripts/merge_topics.py
+
+      - name: Score topics
+        run: python scripts/score_topics.py --mode "${PIPELINE_MODE}"
+
+      - name: Generate drafts
+        run: python scripts/generate_drafts.py --mode "${PIPELINE_MODE}"
+
+      - name: Select publish target
+        run: python scripts/select_publish_target.py
+
+      - name: Export note draft
+        run: python scripts/export_note_draft.py
+
+      - name: Update queue and performance log
+        run: python scripts/update_queue.py --mode "${PIPELINE_MODE}"
+
+      - name: Upload generated artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: note-pipeline-output
+          path: |
+            data/
+            output/

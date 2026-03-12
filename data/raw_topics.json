@@ -1,0 +1,13 @@
+{
+  "topics": [
+    {
+      "id": "seed-001",
+      "title": "First dry run topic",
+      "source": "manual_seed",
+      "priority": 1,
+      "notes": "Replace this with real candidate topics before semi-automated operation.",
+      "status": "collected",
+      "collected_at": "2026-03-12T15:06:26.831007+00:00"
+    }
+  ]
+}

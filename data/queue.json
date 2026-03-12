@@ -1,0 +1,14 @@
+{
+  "items": [
+    {
+      "topic_id": "seed-001",
+      "title": "First dry run topic",
+      "slug": "first-dry-run-topic",
+      "draft_path": "output/drafts/first-dry-run-topic.md",
+      "status": "pending_review",
+      "selected_at": "2026-03-12T15:06:27.148950+00:00",
+      "last_mode": "dry_run",
+      "last_updated": "2026-03-12T15:06:27.315699+00:00"
+    }
+  ]
+}

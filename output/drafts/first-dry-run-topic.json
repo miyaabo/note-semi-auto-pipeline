@@ -1,0 +1,8 @@
+{
+  "topic_id": "seed-001",
+  "title": "First dry run topic",
+  "slug": "first-dry-run-topic",
+  "mode": "dry_run",
+  "draft_path": "output\\drafts\\first-dry-run-topic.md",
+  "generated_at": "2026-03-12T15:06:27.072081+00:00"
+}
