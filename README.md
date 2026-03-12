@@ -66,3 +66,38 @@ The workflow uploads `data/` and `output/` as artifacts after each run.
 2. Refine the prompt files in `prompts/`.
 3. Expand queue updates and performance review logic.
 4. Add tests once the first real implementation details are fixed.
+
+## 現在の進捗
+
+初期リポジトリ構成の作成は完了しています。
+
+現在までに完了していること:
+- ディレクトリ構成の作成
+- プレースホルダーファイルの配置
+- Pythonスクリプトの最小スタブ作成
+- dry_run による最低限の動作確認
+- ローカルGitでの初回コミット
+
+現在の段階は「完成品」ではなく、「動作する骨組みができた状態」です。
+本番用のネタ収集、スコアリング、記事生成ロジックは今後実装していきます。
+
+## このプロジェクトの方針
+
+このプロジェクトは、note販売を半自動で回せる環境を作ることを目的としています。
+
+想定している流れ:
+1. AIによるネタ集め
+2. AIによる下書き作成
+3. 公開用データの出力
+4. AIによる分析
+5. 改善して繰り返す
+
+現時点では、公開処理の完全自動化は行いません。
+記事品質、安全性、運用の安定性が確認できるまでは、note公開は手動で行います。
+
+## ローカル運用メモ
+
+### Codex
+```bash
+codex login status
+codex login
